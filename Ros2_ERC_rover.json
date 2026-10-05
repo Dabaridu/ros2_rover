@@ -1,0 +1,180 @@
+{
+  "configById": {
+    "3D!18i6zy7": {
+      "layers": {
+        "845139cb-26bc-40b3-8161-8ab60af4baf5": {
+          "visible": true,
+          "frameLocked": true,
+          "label": "Grid",
+          "instanceId": "845139cb-26bc-40b3-8161-8ab60af4baf5",
+          "layerId": "foxglove.Grid",
+          "size": 10,
+          "divisions": 10,
+          "lineWidth": 1,
+          "color": "#248eff",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "order": 1
+        }
+      },
+      "cameraState": {
+        "distance": 13.2684086257812,
+        "perspective": true,
+        "phi": 75.3659039008938,
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "targetOffset": [
+          0,
+          0,
+          0
+        ],
+        "targetOrientation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "thetaOffset": -127.02438354491724,
+        "fovy": 45,
+        "near": 0.5,
+        "far": 5000
+      },
+      "followMode": "follow-pose",
+      "scene": {
+        "enableStats": false
+      },
+      "transforms": {},
+      "topics": {
+        "/expansions": {
+          "visible": false
+        }
+      },
+      "publish": {
+        "type": "point",
+        "poseTopic": "/move_base_simple/goal",
+        "pointTopic": "/clicked_point",
+        "poseEstimateTopic": "/initialpose",
+        "poseEstimateXDeviation": 0.5,
+        "poseEstimateYDeviation": 0.5,
+        "poseEstimateThetaDeviation": 0.26179939
+      },
+      "synchronize": false,
+      "imageMode": {}
+    },
+    "Teleop!cg5xee": {
+      "topic": "/cmd_vel",
+      "publishRate": 10,
+      "autoSendStopOnRelease": false,
+      "upButton": {
+        "field": "linear-x",
+        "value": 1
+      },
+      "downButton": {
+        "field": "linear-x",
+        "value": -1
+      },
+      "leftButton": {
+        "field": "angular-z",
+        "value": 1
+      },
+      "rightButton": {
+        "field": "angular-z",
+        "value": -1
+      },
+      "stopButton": {
+        "field": "linear-x",
+        "value": 0
+      }
+    },
+    "Image!2tsg6iu": {
+      "cameraState": {
+        "distance": 20,
+        "perspective": true,
+        "phi": 60,
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "targetOffset": [
+          0,
+          0,
+          0
+        ],
+        "targetOrientation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "thetaOffset": 60,
+        "fovy": 45,
+        "near": 0.5,
+        "far": 5000
+      },
+      "followMode": "follow-pose",
+      "scene": {},
+      "transforms": {},
+      "topics": {},
+      "layers": {},
+      "publish": {
+        "type": "point",
+        "poseTopic": "/move_base_simple/goal",
+        "pointTopic": "/clicked_point",
+        "poseEstimateTopic": "/initialpose",
+        "poseEstimateXDeviation": 0.5,
+        "poseEstimateYDeviation": 0.5,
+        "poseEstimateThetaDeviation": 0.26179939
+      },
+      "synchronize": false,
+      "imageMode": {
+        "imageTopic": "/camera/image_raw",
+        "calibrationTopic": "/camera/camera_info"
+      }
+    },
+    "Publish!1mrrs4d": {
+      "topicName": "/cmd_vel",
+      "datatype": "geometry_msgs/msg/Twist",
+      "value": "{\n  \"linear\": {\n    \"x\": 1,\n    \"y\": 0,\n    \"z\": 0\n  },\n  \"angular\": {\n    \"x\": 0,\n    \"y\": 0,\n    \"z\": 1\n  }\n}"
+    },
+    "Publish!2q5pjpz": {
+      "topicName": "/cmd_vel",
+      "datatype": "geometry_msgs/msg/Twist",
+      "value": "{\n  \"linear\": {\n    \"x\": 1,\n    \"y\": 0,\n    \"z\": 0\n  },\n  \"angular\": {\n    \"x\": 0,\n    \"y\": 0,\n    \"z\": -1\n  }\n}"
+    }
+  },
+  "globalVariables": {},
+  "userNodes": {},
+  "playbackConfig": {
+    "speed": 1
+  },
+  "layout": {
+    "first": "3D!18i6zy7",
+    "second": {
+      "first": {
+        "first": "Teleop!cg5xee",
+        "second": "Publish!2q5pjpz",
+        "direction": "row"
+      },
+      "second": {
+        "first": "Image!2tsg6iu",
+        "second": "Publish!1mrrs4d",
+        "direction": "row"
+      },
+      "direction": "column"
+    },
+    "direction": "row",
+    "splitPercentage": 31.668154129785453
+  }
+}

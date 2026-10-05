@@ -6,7 +6,8 @@ ARG ROS_DISTRO
 WORKDIR /root/ros2_ws
 SHELL ["/bin/bash", "-c"]
 ENV DISPLAY=host.docker.internal:0.0 \
-    QT_X11_NO_MITSHM=1
+    QT_X11_NO_MITSHM=1 \
+    FASTDDS_SHM_TRANSPORT_DISABLE=1
 EXPOSE 8765
 COPY . /root/ros2_ws/src
 
@@ -20,6 +21,7 @@ RUN apt-get update \
     python3 \
     python3-pip \
     ros-${ROS_DISTRO}-foxglove-bridge \
+    ros-${ROS_DISTRO}-ros2controlcli \
     x11-xserver-utils
 RUN rosdep install --from-paths src --ignore-src -r -y
 
@@ -34,6 +36,7 @@ RUN echo "alias foxglove='ros2 launch foxglove_bridge foxglove_bridge_launch.xml
 RUN printf '%s\n' \
     'bind-key -n S-Left previous-window' \
     'bind-key -n S-Right next-window' \
+    'bind-key k kill-session' \
     > /root/.tmux.conf
 
 # Run a default command, e.g., starting a bash shell

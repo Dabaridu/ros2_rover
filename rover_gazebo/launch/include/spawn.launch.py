@@ -23,7 +23,7 @@
 
 import os
 from ament_index_python import get_package_share_directory
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, ExecuteProcess
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 from launch import LaunchDescription
@@ -76,39 +76,34 @@ def generate_launch_description():
         parameters=[{"use_sim_time": True}],
     )
 
-    load_joint_state_controller = ExecuteProcess(
-        cmd=[
-            "ros2",
-            "control",
-            "load_controller",
-            "--set-state",
-            "active",
-            "joint_state_broadcaster",
-        ],
+    # long timeouts: the simulation can run far below real time
+    spawner_timeouts = [
+        "--controller-manager-timeout",
+        "300",
+        "--switch-timeout",
+        "300",
+        "--service-call-timeout",
+        "300",
+    ]
+
+    load_joint_state_controller = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_state_broadcaster"] + spawner_timeouts,
         output="screen",
     )
 
-    load_position_controller_controller = ExecuteProcess(
-        cmd=[
-            "ros2",
-            "control",
-            "load_controller",
-            "--set-state",
-            "active",
-            "position_controller",
-        ],
+    load_position_controller_controller = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["position_controller"] + spawner_timeouts,
         output="screen",
     )
 
-    load_velocity_controller_controller = ExecuteProcess(
-        cmd=[
-            "ros2",
-            "control",
-            "load_controller",
-            "--set-state",
-            "active",
-            "velocity_controller",
-        ],
+    load_velocity_controller_controller = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["velocity_controller"] + spawner_timeouts,
         output="screen",
     )
 
